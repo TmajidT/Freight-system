@@ -14,9 +14,10 @@ def main():
     #managers.insert_manager(13,"probably majid dfghdfgf57")
     #managers.display_all_managers()
 
-    #orders.insert_order(6,5,13,"esfahan","tehran",55000,"1403-05-26")
+    #orders.insert_order(8,"LED lamps",2,5,"esfahan","tehran",55000,"1403-05-26")
     #orders.display_all_orders()
-    orders.display_order_by_id(6)
+    #orders.display_order_by_id(8)
+    customers.customers_panel()
 
 if __name__ == '__main__':
     main()

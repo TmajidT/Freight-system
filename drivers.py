@@ -75,3 +75,5 @@ def display_all_drivers():
     finally:
         # Close the connection
         connection.close()
+
+def driver_panel()

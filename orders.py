@@ -17,6 +17,7 @@ def manage_orders():
                 cursor.execute('''
                     CREATE TABLE orders (
                         Order_ID INTEGER PRIMARY KEY,
+                        Order_Name Text,
                         Customer_ID INTEGER NOT NULL,
                         Driver_ID INTEGER,
                         Order_Destination TEXT,
@@ -35,7 +36,7 @@ def manage_orders():
         except Exception as e:
             print(f"Error: {e}")
 
-def insert_order(order_id, customer_id, driver_id, destination, origin_loc, price, delivery_date):
+def insert_order(order_id, order_name, customer_id, driver_id, destination, origin_loc, price, delivery_date):
     manage_orders()
     with connect_to_database() as connection:
         cursor = connection.cursor()
@@ -46,8 +47,8 @@ def insert_order(order_id, customer_id, driver_id, destination, origin_loc, pric
 
         try:
             # Insert data into the 'orders' table
-            cursor.execute("INSERT INTO orders (Order_ID, Customer_ID, Driver_ID, Order_Destination, Order_Origin_Loc, Order_Price, Order_Delivery_Date) VALUES (?, ?, ?, ?, ?, ?, ?)",
-                           (order_id, customer_id, driver_id, destination, origin_loc, price, delivery_date))
+            cursor.execute("INSERT INTO orders (Order_ID, Order_Name, Customer_ID, Driver_ID, Order_Destination, Order_Origin_Loc, Order_Price, Order_Delivery_Date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                           (order_id, order_name, customer_id, None, destination, origin_loc, price, delivery_date))
             print("Order record added successfully.")
 
         except Exception as e:
@@ -83,7 +84,7 @@ def display_order_by_id(order_id):
             record = cursor.fetchone()
 
             if record:
-                print(f"Order ID: {record[0]}, Customer ID: {record[1]}, Driver ID: {record[2]}, Destination: {record[3]}, Origin Location: {record[4]}, Price: {record[5]}, Delivery Date: {record[6]}")
+                print(f"Order ID: {record[0]} , Order Name: {record[1]} , Customer ID: {record[2]}, Driver ID: {record[3]}, Destination: {record[4]}, Origin Location: {record[5]}, Price: {record[6]}, Delivery Date: {record[7]}")
             else:
                 print(f"No record found for Order ID {order_id}.")
 

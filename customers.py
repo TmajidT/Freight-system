@@ -1,4 +1,5 @@
 import sqlite3
+import orders
 
 def connect_to_database():
     return sqlite3.connect("mydatabase.db")
@@ -60,3 +61,23 @@ def display_all_customers():
         except Exception as e:
             print(f"Error: {e}")
 
+def customers_panel():
+    while True:
+        print("what is your request?")
+        print("1: place new order  2: see your order  9: exit the program")
+        request = int(input("   :"))
+        if request == 1:
+            order_id = input("order ID: ")
+            order_name = input("the product/order name: ")
+            customer_id = input("your ID: ")
+            driver_id = 0
+            origin_location = input("origin location: ")
+            destination = input("destination: ")
+            price = input("price of the order: ")
+            delivery_date = input("what is the delivery date: ")
+            orders.insert_order(order_id, order_name, customer_id, driver_id, destination, origin_location, price, delivery_date)
+        elif request == 2:
+            order_id = input("your order id: ")
+            orders.display_order_by_id(order_id)
+        elif request == 9:
+            break
