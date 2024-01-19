@@ -66,7 +66,8 @@ def display_all_orders():
             if records:
                 print("All Orders:")
                 for record in records:
-                    print(f"Order ID: {record[0]}, Customer ID: {record[1]}, Driver ID: {record[2]}, Destination: {record[3]}, Origin Location: {record[4]}, Price: {record[5]}, Delivery Date: {record[6]}")
+                    print(
+                        f"Order ID: {record[0]} , Order Name: {record[1]} , Customer ID: {record[2]}, Driver ID: {record[3]}, Destination: {record[4]}, Origin Location: {record[5]}, Price: {record[6]}, Delivery Date: {record[7]}")
             else:
                 print("No records found in the 'orders' table.")
 
@@ -87,6 +88,19 @@ def display_order_by_id(order_id):
                 print(f"Order ID: {record[0]} , Order Name: {record[1]} , Customer ID: {record[2]}, Driver ID: {record[3]}, Destination: {record[4]}, Origin Location: {record[5]}, Price: {record[6]}, Delivery Date: {record[7]}")
             else:
                 print(f"No record found for Order ID {order_id}.")
+
+        except Exception as e:
+            print(f"Error: {e}")
+
+def update_driver_id(order_id, new_driver_id):
+    with connect_to_database() as connection:
+        cursor = connection.cursor()
+
+        try:
+            # Update Driver_ID for a specific order by Order_ID
+            cursor.execute("UPDATE orders SET Driver_ID=? WHERE Order_ID=?", (new_driver_id, order_id))
+            connection.commit()
+            print(f"Driver ID updated successfully for Order ID {order_id}.")
 
         except Exception as e:
             print(f"Error: {e}")

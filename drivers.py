@@ -1,4 +1,5 @@
 import sqlite3
+import orders
 
 def manage_drivers():
     # Connect to the database
@@ -76,4 +77,22 @@ def display_all_drivers():
         # Close the connection
         connection.close()
 
-def driver_panel()
+def driver_panel():
+    while True:
+        print("what is your request?")
+        print("1: accept new order  2: see your order  9: exit the program")
+        request = int(input("   :"))
+        if request == 1:
+            print("here are all of the orders")
+            print()
+            orders.display_all_orders()
+            print()
+            print("Which one do you want? : ")
+            order_id = input("enter order ID: ")
+            driver_id = input("enter your ID: ")
+            orders.update_driver_id(order_id, driver_id)
+        elif request == 2:
+            order_id = input("your order id: ")
+            orders.display_order_by_id(order_id)
+        elif request == 9:
+            break
