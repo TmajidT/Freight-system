@@ -19,7 +19,8 @@ def main():
     #orders.display_order_by_id(8)
 
     #customers.customers_panel()
-    drivers.driver_panel()
+    #drivers.driver_panel()
+    managers.manager_panel()
 
 if __name__ == '__main__':
     main()
